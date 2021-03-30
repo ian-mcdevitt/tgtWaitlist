@@ -24,7 +24,7 @@ client.on('message', async triggerMessage => {
         const blacklistIndex = triggerMessage.content.indexOf('--blacklist ');
         const blacklist = blacklistIndex !== -1 ? `${config.blacklistHeader}${triggerMessage.content.substring(blacklistIndex + 12)}\n` : '';
 
-        var post = `${blacklist}:arrow_up: <@&814324717485293611>, there's a new job for you! :arrow_up:`;
+        var post = `${blacklist}${config.introString}`;
 
         triggerMessage.channel.send(post).then(async jobMessage => {
             await jobMessage.react(config.signupEmoji);
