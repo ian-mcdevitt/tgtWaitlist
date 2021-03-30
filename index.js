@@ -100,12 +100,14 @@ client.on('messageReactionAdd', async reaction => {
     let blacklist = [];
     if (botMessage.indexOf(config.blacklistHeader) === 0) {
         blacklist = botMessage.substring(config.blacklistHeader.length, botMessage.indexOf('\n')).split(' ').map((user) => {
+            // .slice(3, -1) cuts off the `<!@ ... >` from the user id in the blacklist string
             return user.trim().slice(3, -1);
         })
     }
 
     // The blacklist period has not yet expired
     if (+(new Date()) - reaction.message.createdTimestamp < config.blacklistDuration) {
+        // Search through the users who reacted to see if they're in the blacklist. Remove their reaction if so.
         reaction.users.cache.map(async (user, id) => {
             if (blacklist.includes(user.id)) {
                 await reaction.users.remove(user.id);
@@ -119,6 +121,7 @@ client.on('messageReactionAdd', async reaction => {
     // Cut out the lists
     botMessage = botMessage.split(config.signupSplit)[0].split(config.waitlistSplit)[0];
 
+    // Always rerender the list of users
     await reaction.message.edit(botMessage + renderLists(reaction.message.reactions.cache));
 })
 
@@ -130,5 +133,6 @@ client.on('messageReactionRemove', async reaction => {
     // Cut out the lists
     botMessage = botMessage.split(config.signupSplit)[0].split(config.waitlistSplit)[0];
 
+    // Always rerender the list of users
     await reaction.message.edit(botMessage + renderLists(reaction.message.reactions.cache));
 });
