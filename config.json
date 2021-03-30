@@ -6,6 +6,7 @@
     "signupEmoji": "671793724593799179",
     "waitlistEmoji": "💺",
     "notInterestedEmoji": "🚫",
+    "listLength": 5,
     "blacklistHeader": "24hr Blacklist: ",
     "blacklistDuration": 86400000
 }

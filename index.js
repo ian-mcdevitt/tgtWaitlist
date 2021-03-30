@@ -59,10 +59,10 @@ const renderLists = (reactions) => {
         }
     })
 
-    // Move anyone over the 5th player into the waitlist (before people who deliberately waitlisted themselves)
-    if (signupReactions.length > 5) {
-        waitlistReactions = [...signupReactions.slice(5), ...waitlistReactions];
-        signupReactions = signupReactions.slice(0, 5);
+    // Move anyone over the {config.listLength}th player into the waitlist (before people who deliberately waitlisted themselves)
+    if (signupReactions.length > config.listLength) {
+        waitlistReactions = [...signupReactions.slice(config.listLength), ...waitlistReactions];
+        signupReactions = signupReactions.slice(0, config.listLength);
     }
 
     // Create the list string
