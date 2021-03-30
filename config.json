@@ -1,0 +1,10 @@
+{
+    "signupSplit": "\n=== Sign-up List ===",
+    "waitlistSplit": "\n=== Wait List ===",
+    "botUserId": "826446490346979349",
+    "signupEmoji": "671793724593799179",
+    "waitlistEmoji": "💺",
+    "notInterestedEmoji": "🚫",
+    "blacklistHeader": "24hr Blacklist: ",
+    "blacklistDuration": 86400000
+}
